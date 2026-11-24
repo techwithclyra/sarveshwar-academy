@@ -22,7 +22,7 @@
     --font-display:'Archivo','Helvetica Neue',Arial,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
   body{font-family:var(--font-sf);color:var(--velvet);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
   h1,h2{font-family:var(--font-display);line-height:1;letter-spacing:-.02em;font-weight:800}
   h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.015em;font-weight:700}
@@ -114,9 +114,68 @@
   .hc-form input:focus,.hc-form textarea:focus{outline:none;border-color:var(--gold-soft);background:rgba(255,255,255,.12)}
   .hc-msg{display:none;background:rgba(14,143,151,.14);border:1px solid var(--mint);color:#fff;border-radius:10px;padding:11px 14px;font-size:.84rem}
 
+  /* HERO — refined layout (overrides above) */
+  .hero{min-height:min(100vh,960px);padding:128px 0 72px;background:
+    radial-gradient(ellipse 60% 55% at 85% 20%,rgba(14,143,151,.30),transparent 60%),
+    radial-gradient(ellipse 50% 50% at 0% 100%,rgba(77,214,214,.12),transparent 60%),
+    linear-gradient(180deg,#0A121A 0%,#0C1822 100%)}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,transparent,rgba(10,18,26,.6));pointer-events:none;z-index:2}
+  .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px}
+  .hero h1{font-size:clamp(2.5rem,5vw,4.4rem);line-height:1.02;letter-spacing:-.035em;margin:22px 0 20px;max-width:12ch;text-wrap:balance}
+  .h1-accent{white-space:nowrap;background:linear-gradient(100deg,var(--gold-soft) 10%,#b6f0f2 45%,var(--mint) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
+  .hero .sub{font-size:1.12rem;line-height:1.6;color:rgba(255,255,255,.72);max-width:520px}
+  .hero-cta{margin:32px 0 40px;gap:12px}
+  .hero-cta .btn{padding:16px 28px;font-size:.95rem}
+  .hero-cta .btn svg{transition:transform .25s}
+  .hero-cta .btn:hover svg{transform:translateX(4px)}
+  .hero-stats{display:flex;gap:0;margin:0;padding:0}
+  .hero-stats > div{padding:0 28px;border-left:1px solid rgba(255,255,255,.14)}
+  .hero-stats > div:first-child{padding-left:0;border-left:none}
+  .hero-stats dt{font-family:var(--font-display);font-weight:800;font-size:clamp(1.7rem,2.6vw,2.2rem);line-height:1;color:#fff;letter-spacing:-.02em}
+  .hero-stats dd{margin-top:8px;font-size:.8rem;font-weight:500;color:rgba(255,255,255,.58);letter-spacing:.01em}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);max-width:560px}
+  .ht-logos{display:flex;flex:0 0 auto}
+  .ht-logos span{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;border:2px solid #0A121A;margin-left:-10px;padding:5px}
+  .ht-logos span:first-child{margin-left:0}
+  .ht-logos img{width:100%;height:100%;object-fit:contain}
+  .hero-trust p{font-size:.82rem;line-height:1.45;color:rgba(255,255,255,.6)}
+  .hero-trust b{color:rgba(255,255,255,.9);font-weight:600}
+  .hero-right{position:relative}
+  .hero-right::before{content:"";position:absolute;inset:-30px;background:radial-gradient(closest-side,rgba(14,143,151,.35),transparent);filter:blur(30px);z-index:-1}
+  .hero-contact{border-radius:22px;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(18px);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.12)}
+  .hc-body{padding:30px 30px 28px}
+  .hc-head{margin-bottom:22px}
+  .hc-head h3{font-size:1.5rem;margin:14px 0 6px}
+  .hc-live{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:600;color:var(--gold-soft);background:rgba(14,143,151,.14);border:1px solid rgba(63,197,203,.3);border-radius:30px;padding:6px 12px}
+  .hc-live i{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+  .hc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .hc-form{gap:14px}
+  .hc-form input,.hc-form textarea{border-radius:12px;padding:12px 14px;background:rgba(10,18,26,.45);border-color:rgba(255,255,255,.14)}
+  .hc-form input:focus,.hc-form textarea:focus{box-shadow:0 0 0 4px rgba(63,197,203,.18)}
+  .hc-form .btn{padding:15px;margin-top:4px;font-size:.95rem}
+  .scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;width:24px;height:38px;border:2px solid rgba(255,255,255,.3);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
+  .scroll-cue span{width:3px;height:8px;border-radius:2px;background:var(--gold-soft);animation:cue 1.8s ease-in-out infinite}
+  @keyframes cue{0%{opacity:0;transform:translateY(-3px)}40%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+  @media(max-width:980px){
+    .hero{padding:112px 0 64px;min-height:auto}
+    .hero h1{max-width:none}
+    .scroll-cue{display:none}
+  }
+  @media(max-width:560px){
+    .hero h1{font-size:clamp(2rem,10vw,2.6rem)}
+    .hero-stats > div{padding:0 16px}
+    .hero-stats dd{font-size:.72rem}
+    .hc-row{grid-template-columns:1fr}
+    .hc-body{padding:24px 20px}
+    .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  }
+  @media(prefers-reduced-motion:reduce){.h1-accent,.hc-live i,.scroll-cue span{animation:none}}
+
   /* SECTIONS shared */
-  section.pad{padding:50px 0}
-  .sec-head{max-width:760px;margin-bottom:26px}
+  section.pad{padding:clamp(64px,8vw,104px) 0}
+  [id]{scroll-margin-top:90px}
+  .sec-head{max-width:760px;margin-bottom:clamp(32px,4vw,52px)}
   .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
   .sec-head h2{font-size:clamp(2rem,4.4vw,3.3rem);margin:16px 0}
   .sec-head p{font-size:1rem;color:var(--silver)}
@@ -150,6 +209,21 @@
   .prog-badges span{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;color:var(--velvet);background:var(--slate);border:1px solid var(--line);border-radius:30px;padding:5px 11px}
   .prog-actions{display:flex;flex-direction:column;gap:10px;margin-top:auto}
   .prog-actions .btn{justify-content:center}
+
+  /* HOW WE WORK */
+  .process{background:var(--ivory);position:relative}
+  .process-grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
+  .process-grid::before{content:"";position:absolute;top:31px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,rgba(14,143,151,.45) 0 8px,transparent 8px 16px);z-index:0}
+  .step{position:relative;z-index:1;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 26px;box-shadow:0 18px 40px -32px rgba(20,35,48,.35);transition:transform .3s,border-color .3s}
+  .step:hover{transform:translateY(-6px);border-color:rgba(14,143,151,.4)}
+  .step-n{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;margin-bottom:16px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;font-family:var(--font-display);font-weight:800;font-size:1rem;box-shadow:0 0 0 6px var(--ivory)}
+  .step h4{font-size:1.12rem;margin-bottom:8px}
+  .step p{color:var(--silver);font-size:.9rem;line-height:1.55}
+  @media(max-width:980px){.process-grid{grid-template-columns:1fr 1fr}.process-grid::before{display:none}}
+  @media(max-width:560px){.process-grid{grid-template-columns:1fr}}
+
+  /* Visible keyboard focus everywhere */
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.faq-q:focus-visible{outline:3px solid var(--gold-soft);outline-offset:3px}
 
   /* CASE STUDIES */
   .case-studies{background:var(--slate)}
@@ -207,7 +281,7 @@
   .car-slide .cinfo{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;background:linear-gradient(transparent,rgba(12,10,9,.94))}
   .car-slide .cinfo h3{font-size:1.02rem;margin-bottom:4px;color:#fff}
   .car-slide .cinfo p{color:rgba(255,255,255,.85);font-size:.8rem;max-width:560px}
-  .car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:5;font-size:1.4rem}
+  .car-arrow{font-family:inherit;line-height:1;padding:0;position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:5;font-size:1.4rem}
   .car-arrow:hover{background:rgba(255,255,255,.28)}
   .car-arrow.prev{left:16px}.car-arrow.next{right:16px}
   .car-dots{display:flex;justify-content:center;gap:8px;margin-top:18px;position:relative;z-index:2}
@@ -215,7 +289,8 @@
   .car-dots span.active{background:var(--gold-soft);width:24px;border-radius:5px}
 
   /* EVENTS — two-column layout: what-we-run categories + carousel */
-  .events-layout{position:relative;z-index:2;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;margin-top:36px}
+  .events-layout > *{min-width:0}
+  .events-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center;margin-top:36px}
   .evt-cats{display:flex;flex-direction:column;gap:26px}
   .evt-cat{display:flex;gap:18px}
   .evt-cat .n{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:rgba(255,255,255,.3);flex:0 0 auto;line-height:1.3}
@@ -249,11 +324,109 @@
   .evt-thumb{position:relative;height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,var(--indigo),var(--navy));color:var(--gold-soft);overflow:hidden}
   .evt-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .evt-thumb:has(img)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,9,.4),transparent 55%);z-index:0}
+  .stock-tag{position:absolute;right:12px;top:14px;z-index:2;font:600 .62rem var(--font-sf);letter-spacing:.04em;color:rgba(255,255,255,.85);background:rgba(10,18,26,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:4px 10px}
   .evt-type{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--font-sf);font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.26);border-radius:30px;padding:5px 14px;color:#fff}
 
   /* QUOTE DIVIDER */
   .quote-divider{padding:36px 0;text-align:center;background:var(--white)}
   .quote-divider p{font-family:var(--font-sf);font-style:italic;font-weight:500;font-size:clamp(1.1rem,2.2vw,1.4rem);max-width:740px;margin:0 auto;color:var(--velvet)}
+
+  /* 2026 TRACK RECORD TIMELINE */
+  .tl{position:relative;z-index:2;margin-top:64px;padding-top:48px;border-top:1px solid rgba(255,255,255,.12)}
+  .tl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  .tl-head h3{color:#fff;font-size:clamp(1.5rem,2.6vw,2rem)}
+  .tl-head p{color:rgba(255,255,255,.62);font-size:.92rem;margin-top:6px;max-width:560px}
+  .tl-filters{display:flex;gap:8px;flex-wrap:wrap}
+  .tl-filters button{font:600 .78rem var(--font-sf);color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:8px 14px;cursor:pointer;transition:.2s}
+  .tl-filters button:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+  .tl-filters button[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+  .tl-slider{position:relative;margin:0 -26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 60px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 60px),transparent)}
+  .tl-grid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:8px 26px 10px;scroll-padding:0 26px;scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+  .tl-grid::-webkit-scrollbar{display:none}
+  .tl-grid.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+  .tl-grid.dragging .tl-item{pointer-events:none}
+  .tl-grid:focus-visible{outline:none}
+  .tl-item{min-width:0;flex:0 0 clamp(250px,26vw,290px);min-height:200px;scroll-snap-align:start;user-select:none}
+  .tl-controls{display:flex;align-items:center;gap:20px;margin-top:22px}
+  .tl-progress{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+  .tl-progress span{display:block;height:100%;width:20%;border-radius:3px;background:linear-gradient(90deg,var(--gold-soft),var(--mint));transition:width .3s ease,margin-left .3s ease}
+  .tl-arrows{display:flex;gap:10px}
+  .tl-arrow{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;line-height:1;padding:0 0 3px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);cursor:pointer;transition:.2s}
+  .tl-arrow:hover:not(:disabled){background:var(--gold);border-color:var(--gold)}
+  .tl-arrow:disabled{opacity:.35;cursor:default}
+  @media(max-width:560px){.tl-item{flex-basis:78vw}}
+  .tl-item{position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 18px 16px;border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);transition:transform .25s,border-color .25s}
+  .tl-item:hover{transform:translateY(-4px);border-color:rgba(63,197,203,.5)}
+  .tl-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .tl-date{font:800 .72rem var(--font-sf);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft)}
+  .tl-n{font:800 .72rem var(--font-display);color:rgba(255,255,255,.3)}
+  .tl-item h4{color:#fff;font-size:.98rem;line-height:1.3}
+  .tl-inst{display:flex;align-items:center;gap:9px;font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.35}
+  .tl-inst img{width:28px;height:28px;flex:0 0 auto;border-radius:50%;background:#fff;object-fit:contain;padding:3px}
+  .tl-inst img.dark{background:var(--navy);border:1px solid rgba(255,255,255,.2)}
+  .tl-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+  .tl-meta span{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:30px;padding:4px 10px}
+  .tl-meta span.k{color:#0A121A;background:var(--gold-soft);border-color:var(--gold-soft)}
+  .tl-item[hidden]{display:none}
+
+  /* 3D COVERFLOW — enabled by JS (.tl-3d) unless the visitor prefers reduced motion.
+     The centre card faces the viewer; neighbours swing away on the Y axis and sink back in Z. */
+  .tl-slider.is-3d{-webkit-mask-image:none;mask-image:none;margin:0 -26px;padding:26px 0 10px}
+  .tl-slider.is-3d::before{content:"";position:absolute;left:50%;bottom:-6px;width:min(420px,70%);height:46px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(63,197,203,.35),transparent);filter:blur(12px);pointer-events:none}
+  .tl-grid.tl-3d{--card:300px;gap:6px;padding:30px calc(50% - var(--card)/2) 40px;scroll-snap-type:x mandatory;perspective:none;overflow-y:visible}
+  .tl-grid.tl-3d .tl-item{flex:0 0 var(--card);min-width:0;max-width:var(--card);scroll-snap-align:center;transform-style:preserve-3d;will-change:transform,opacity;transition:border-color .3s,box-shadow .3s,background .3s}
+  .tl-grid.tl-3d .tl-item:hover{transform:none}
+  .tl-grid.tl-3d .tl-item.is-center{border-color:rgba(63,197,203,.75);box-shadow:0 30px 60px -24px rgba(0,0,0,.8),0 0 0 1px rgba(63,197,203,.25),0 0 40px -6px rgba(14,143,151,.55);background:linear-gradient(160deg,rgba(14,143,151,.32),rgba(255,255,255,.04))}
+  .tl-grid.tl-3d .tl-item.is-center::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.10) 45%,transparent 60%);background-size:250% 100%;animation:tlSheen 3.2s ease-in-out infinite}
+  @keyframes tlSheen{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+  .tl-grid.tl-3d .tl-item:not(.is-center){cursor:pointer}
+
+  .tl-logo-ph{width:28px;height:28px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;font:800 .62rem var(--font-sf);letter-spacing:.02em}
+
+  /* Institution cards (several programs) — clickable, open the pop-up */
+  .tl-group{cursor:pointer;background:linear-gradient(160deg,rgba(14,143,151,.22),rgba(255,255,255,.03));border-color:rgba(63,197,203,.35)}
+  .tl-group:hover,.tl-group:focus-visible{border-color:var(--gold-soft);box-shadow:0 18px 40px -20px rgba(14,143,151,.7)}
+  .tl-count{flex:0 0 auto;white-space:nowrap;font:800 .68rem var(--font-sf);letter-spacing:.06em;text-transform:uppercase;color:#0A121A;background:var(--gold-soft);border-radius:30px;padding:3px 9px}
+  .tl-inst.big{font-size:.95rem;font-weight:700;color:#fff;margin-top:2px}
+  .tl-inst.big img,.tl-inst.big .tl-logo-ph{width:40px;height:40px;padding:4px}
+  .tl-inst.big{flex-wrap:wrap;font-size:1rem;line-height:1.3}
+  .tl-inst img.wide,.tl-inst.big img.wide{width:auto;height:44px;max-width:100%;border-radius:10px;padding:5px 10px;flex-basis:auto}
+  .tl-inst.big img.wide + span{flex-basis:100%}
+  .tl-mlogo img.wide{width:auto;height:56px;max-width:220px;border-radius:12px;padding:6px 12px}
+  .tl-item:not(.tl-group) h4{font-size:.92rem;color:rgba(255,255,255,.85);font-weight:600}
+  .tl-mini{list-style:none;display:flex;flex-direction:column;gap:4px;margin:2px 0 0}
+  .tl-mini li{position:relative;padding-left:14px;font-size:.8rem;color:rgba(255,255,255,.72);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tl-mini li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:var(--gold-soft)}
+  .tl-mini li.more{color:var(--gold-soft);font-weight:700}
+  .tl-mini li.more::before{display:none}
+  .tl-open{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;color:var(--gold-soft);margin-top:4px}
+  .tl-open b{transition:transform .25s}
+  .tl-group:hover .tl-open b{transform:translateX(4px)}
+
+  /* Institution pop-up */
+  .tl-mbox{max-width:640px}
+  .tl-mhead{display:flex;align-items:center;gap:18px;padding:30px 64px 24px 32px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff}
+  .tl-mhead h3{color:#fff;font-size:1.4rem;margin:8px 0 4px}
+  .tl-mhead p{color:rgba(255,255,255,.7);font-size:.86rem}
+  .tl-mlogo img,.tl-mlogo .tl-logo-ph{width:64px;height:64px;border-radius:50%;background:#fff;object-fit:contain;padding:7px;font-size:1rem}
+  .tl-mlogo .tl-logo-ph{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
+  .tl-mlist{list-style:none;padding:12px 32px 4px;margin:0;position:relative}
+  .tl-mlist li{display:grid;grid-template-columns:112px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);position:relative}
+  .tl-mlist li:last-child{border-bottom:none}
+  .tl-mdate{font:800 .72rem var(--font-sf);letter-spacing:.06em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+  .tl-mlist h4{font-size:1rem;margin-bottom:8px;color:var(--velvet)}
+  .tl-mlist .tl-meta{padding-top:0}
+  .tl-mlist .tl-meta span{color:var(--velvet);background:var(--slate);border-color:var(--line)}
+  .tl-mlist .tl-meta span.k{color:#fff;background:var(--gold);border-color:var(--gold)}
+  .tl-mfoot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;padding:14px 32px 26px}
+  .modal-box .mclose{border:none}
+  @media(max-width:560px){
+    .tl-mhead{padding:24px 56px 20px 20px;gap:14px}
+    .tl-mlogo img,.tl-mlogo .tl-logo-ph{width:48px;height:48px}
+    .tl-mlist{padding:8px 20px 0}
+    .tl-mlist li{grid-template-columns:1fr;gap:6px}
+    .tl-mfoot{padding:12px 20px 22px}
+  }
 
   /* CTA BANDS */
   .cta-band{padding:38px 0;text-align:center;position:relative;overflow:hidden}
@@ -328,7 +501,7 @@
   .lead-sub h3{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-family:var(--font-sf);margin-bottom:18px;display:flex;align-items:center;gap:10px}
   .lead-sub h3::after{content:"";flex:1;height:1px;background:var(--line)}
   .lead-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .lead-grid.mentors{grid-template-columns:repeat(2,1fr);max-width:620px;margin:0 auto}
+  .lead-grid.mentors{grid-template-columns:minmax(0,300px);justify-content:center;margin:0 auto}
   .lead-grid.advisors{grid-template-columns:repeat(3,1fr);max-width:940px;margin:0 auto}
   .lcard{position:relative;border-radius:20px;overflow:hidden;height:440px;transition:.4s cubic-bezier(.2,.8,.2,1);box-shadow:0 18px 50px -30px rgba(12,10,9,.5);isolation:isolate}
   .lcard:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 30px 60px -24px rgba(12,10,9,.5)}
@@ -453,6 +626,23 @@
 
   .about,.programs,.case-studies{position:relative}
 
+  /* INSTITUTIONS — 3D ORBIT RING (built by JS from the marquee logos; the flat
+     marquee stays as the fallback for reduced motion or if the script fails) */
+  .logo-ring-stage{position:relative;height:310px;perspective:1300px;perspective-origin:50% 20%;cursor:grab;touch-action:pan-y;user-select:none;margin-top:4px}
+  .logo-ring-stage.dragging{cursor:grabbing}
+  .logo-ring-stage::before{content:"";position:absolute;left:50%;top:52%;width:min(860px,92%);height:120px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(14,143,151,.16),transparent);border:1px dashed rgba(14,143,151,.22);pointer-events:none}
+  .logo-ring-stage::after{content:"";position:absolute;left:50%;bottom:6px;width:min(520px,70%);height:30px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(20,35,48,.18),transparent);filter:blur(6px);pointer-events:none}
+  .logo-ring{position:absolute;left:50%;top:44%;width:0;height:0;transform-style:preserve-3d}
+  .logo-ring .logo-chip{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform,opacity;transition:box-shadow .3s}
+  .logo-ring .logo-chip img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .4s,opacity .4s}
+  .logo-ring img[src*="kiot"]{transform:scale(1.3)}
+  .logo-ring img[src*="vcas"]{transform:scale(1.15)}
+  .logo-ring .logo-chip.front{box-shadow:0 26px 44px -18px rgba(14,143,151,.55),0 0 0 2px rgba(14,143,151,.35)}
+  .logo-ring .logo-chip.front img{filter:none;opacity:1}
+  .trusted.has-ring .marquee{display:none}
+  .trusted.has-ring{padding-bottom:72px}
+  @media(max-width:560px){.logo-ring-stage{height:240px;margin-top:-10px}}
+
   /* INSTITUTIONS MARQUEE */
   .trusted{background:var(--white);padding:46px 0 52px;text-align:center;position:relative;overflow:hidden}
   .trusted .eyebrow{margin-bottom:22px}
@@ -467,10 +657,10 @@
   .logo-chip:hover img{filter:none;opacity:1}
   /* Some source logos ship with a lot of built-in whitespace around the mark —
      zoom/reposition those specific ones so every chip reads at a similar visual size. */
-  .marquee-track img[src*="karpagam"]{transform:scale(1.85)}
   .marquee-track img[src*="kiot"]{transform:scale(1.3)}
-  .marquee-track img[src*="sri-eshwar"]{transform:scale(1.15)}
-  .marquee-track img[src*="vcas"]{transform:scale(1.3)}
+  .marquee-track img[src*="vcas"]{transform:scale(1.15)}
+  .logo-chip{width:190px}
+  .logo-chip.wide{width:280px;padding:10px 14px}
   @keyframes scrollx{to{transform:translateX(-50%)}}
   @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
@@ -550,38 +740,38 @@
     <a href="#top">Home</a>
 
     <div class="nav-item">
-      <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener" class="nav-toplink">Services
+      <a href="#programs" class="nav-toplink">Services
         <svg class="nav-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </a>
       <div class="dropdown">
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">School Program</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">College Program</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Corporate Training</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Professional Upskilling &amp; Language Mobility</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">AI Incubator Space &amp; Co-Development</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Enterprise Product Engineering &amp; Team Building</a>
+        <a href="#programs">School Program</a>
+        <a href="#programs">College Program</a>
+        <a href="#programs">Corporate Training</a>
+        <a href="#programs">Professional Upskilling &amp; Language Mobility</a>
+        <a href="#programs">AI Incubator Space &amp; Co-Development</a>
+        <a href="#programs">Enterprise Product Engineering &amp; Team Building</a>
       </div>
     </div>
 
     <div class="nav-item">
-      <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener" class="nav-toplink">About Us
+      <a href="#about" class="nav-toplink">About Us
         <svg class="nav-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </a>
       <div class="dropdown">
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Vision &amp; Mission</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Leadership</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Advisory Members</a>
+        <a href="#founder">Vision &amp; Mission</a>
+        <a href="#leadership-team">Leadership</a>
+        <a href="#advisory-members">Advisory Members</a>
       </div>
     </div>
 
     <div class="nav-item">
-      <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener" class="nav-toplink">Resources
+      <a href="#case-studies" class="nav-toplink">Resources
         <svg class="nav-caret" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </a>
       <div class="dropdown">
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Events</a>
+        <a href="#events">Events</a>
         <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Blogs</a>
-        <a href="https://www.sarveshwaracademy.com" target="_blank" rel="noopener">Case Studies</a>
+        <a href="#case-studies">Case Studies</a>
       </div>
     </div>
 
@@ -630,43 +820,46 @@
   <div class="wrap hero-grid">
     <div class="reveal in">
       <span class="eyebrow">Education × Industry × AI</span>
-      <h1>Building Future-Ready Talent. <span class="shimmer">Powering Industry Transformation.</span></h1>
-      <p class="sub">Empowering institutions, enterprises, and governments through AI-driven education, workforce transformation, innovation consulting, and industry-focused training.</p>
+      <h1>Building <span class="h1-accent">Future-Ready</span> Talent for Industry.</h1>
+      <p class="sub">AI-driven education, workforce transformation and industry-focused training for institutions, enterprises and governments.</p>
       <div class="hero-cta">
-        <a href="mailto:ceo@sarveshwaracademy.com?subject=Schedule%20a%20Meeting" class="btn btn-gold">Schedule a Meeting</a>
-        <a href="#case-studies" class="btn btn-ghost">See The Receipts</a>
+        <a href="mailto:ceo@sarveshwaracademy.com?subject=Schedule%20a%20Meeting" class="btn btn-gold">Schedule a Meeting
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#case-studies" class="btn btn-ghost">View Case Studies</a>
       </div>
-      <div class="trust-ribbon">
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="18" cy="9" r="2.4"/></svg></span><div><b data-count="10000" data-suffix="+">0</b>Learners</div></div>
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M12 13v3M9 20h6"/></svg></span><div>Industry Experts</div></div>
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span><div>AI-Powered Learning</div></div>
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div>Enterprise Solutions</div></div>
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><div>Research &amp; Innovation</div></div>
-        <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></span><div>Govt. &amp; Institutional Ties</div></div>
-      </div>
-      <div class="hero-quote">
-        <svg class="hq-mark" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7 7h5v5c0 3-2 5-5 5H6v-2h1c2 0 3-1 3-3H7V7zm9 0h5v5c0 3-2 5-5 5h-1v-2h1c2 0 3-1 3-3h-3V7z"/></svg>
-        <p>"Education is no longer preparation for the future — it is the infrastructure we build the future on."</p>
-        <span>— Sarveshwar Academy</span>
+      <dl class="hero-stats">
+        <div><dt><span data-count="10000" data-suffix="+">0</span></dt><dd>Learners trained</dd></div>
+        <div><dt><span data-count="127" data-suffix="+">0</span></dt><dd>Industry mentors</dd></div>
+        <div><dt><span data-count="12" data-suffix="+">0</span></dt><dd>Years of excellence</dd></div>
+      </dl>
+      <div class="hero-trust">
+        <div class="ht-logos" aria-hidden="true">
+          <span><img src="assets/partners/kiot.jpg" alt=""></span>
+          <span><img src="assets/partners/mcet.png" alt=""></span>
+          <span><img src="assets/partners/vcas.png" alt=""></span>
+          <span><img src="assets/partners/skpec.webp" alt=""></span>
+        </div>
+        <p>Trusted by <b>Knowledge Institute of Technology, MCET, Alliance University</b> and more · <b>18 programs in 2026</b> · <b>MSME registered</b></p>
       </div>
     </div>
-    <div class="reveal in">
+    <div class="reveal in hero-right">
       <div class="hero-contact" id="contact-form">
-        <div class="hc-banner">Get a response from our team within one business day</div>
         <div class="hc-body">
         <div class="hc-head">
-          <span class="eyebrow">Get In Touch</span>
+          <span class="hc-live"><i></i>Replies within one business day</span>
           <h3>Talk To Our Team</h3>
-          <p>Share a few details and we'll get back to you shortly.</p>
+          <p>Tell us what you're planning, and we'll suggest the right program.</p>
         </div>
         <form class="hc-form" id="heroContactForm">
-          <div class="cfield">
-            <label for="hcName">Name</label>
-            <input type="text" id="hcName" name="name" required>
-          </div>
-          <div class="cfield">
-            <label for="hcDesignation">Designation</label>
-            <input type="text" id="hcDesignation" name="designation" placeholder="e.g. Principal, HR Director">
+          <div class="hc-row">
+            <div class="cfield">
+              <label for="hcName">Name</label>
+              <input type="text" id="hcName" name="name" required placeholder="Your full name">
+            </div>
+            <div class="cfield">
+              <label for="hcDesignation">Designation</label>
+              <input type="text" id="hcDesignation" name="designation" placeholder="e.g. Principal">
+            </div>
           </div>
           <div class="cfield">
             <label for="hcInstitute">Institute</label>
@@ -674,7 +867,7 @@
           </div>
           <div class="cfield">
             <label for="hcMessage">Message</label>
-            <textarea id="hcMessage" name="message" rows="4" required placeholder="Tell us a bit about your enquiry..."></textarea>
+            <textarea id="hcMessage" name="message" rows="3" required placeholder="Tell us a bit about your enquiry..."></textarea>
           </div>
           <button type="submit" class="btn btn-gold" style="justify-content:center">Send Enquiry</button>
           <div class="hc-msg" id="hcMsg">Opening your email client to send this to our team…</div>
@@ -683,6 +876,7 @@
       </div>
     </div>
   </div>
+  <a href="#legacy" class="scroll-cue" aria-label="Scroll to next section"><span></span></a>
 </header>
 
 <!-- LEGACY / MSME / THIRUKKURAL BANNER -->
@@ -718,19 +912,19 @@
         <span class="num">01</span>
         <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
         <h4>Industry Experts</h4>
-        <p>127+ industry mentors keeping it real — zero fluff, all real-world experience.</p>
+        <p>127+ active industry mentors who bring real-world engineering experience into every session.</p>
       </div>
       <div class="feat-card">
         <span class="num">02</span>
         <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
         <h4>Practical Learning</h4>
-        <p>Hands-on projects, live industry workflows — we don't do theory-only vibes.</p>
+        <p>Hands-on projects built on live industry workflows, not theory-only lectures.</p>
       </div>
       <div class="feat-card">
         <span class="num">03</span>
         <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 5.8 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.8-4-9s1.5-6.5 4-9z"/></svg></div>
         <h4>Global Opportunities</h4>
-        <p>Language skills + global mobility pathways = your passport to an international career.</p>
+        <p>Language training and global mobility pathways that open doors to international careers.</p>
       </div>
       <div class="feat-card">
         <span class="num">04</span>
@@ -749,25 +943,35 @@
   </div>
   <div class="marquee" aria-label="Institutions we have worked with">
     <div class="marquee-track">
-      <span class="logo-chip"><img src="assets/partners/sathyabama.jpg" alt="Sathyabama Institute of Science & Technology" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/psg.jpg" alt="PSG, Coimbatore" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/sri-eshwar.png" alt="Sri Eshwar College of Engineering" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/karpagam.png" alt="Karpagam Academy of Higher Education" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/adhiparasakthi.jpg" alt="Adhiparasakthi Engineering College" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/ssn.png" alt="SSN College of Engineering" loading="lazy"></span>
       <span class="logo-chip"><img src="assets/partners/kiot.jpg" alt="Knowledge Institute of Technology" loading="lazy"></span>
       <span class="logo-chip"><img src="assets/partners/mcet.png" alt="Dr. Mahalingam College of Engineering and Technology" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/vcas.png" alt="Vivekanandha Educational Institutions for Women" loading="lazy"></span>
-      <!-- duplicate set for a seamless infinite loop -->
-      <span class="logo-chip"><img src="assets/partners/sathyabama.jpg" alt="" aria-hidden="true" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/psg.jpg" alt="" aria-hidden="true" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/sri-eshwar.png" alt="" aria-hidden="true" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/karpagam.png" alt="" aria-hidden="true" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/adhiparasakthi.jpg" alt="" aria-hidden="true" loading="lazy"></span>
-      <span class="logo-chip"><img src="assets/partners/ssn.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/alliance-dark.png" alt="Alliance University, Bengaluru" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/annapoorana.png" alt="Annapoorana Engineering College, Salem" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/vcas.png" alt="Vivekanandha College of Arts and Sciences for Women" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/skpec.webp" alt="SKP Engineering College, Tiruvannamalai" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/ayyappa.png" alt="Ayyappa Engineering College, Cuddalore" loading="lazy"></span>
       <span class="logo-chip"><img src="assets/partners/kiot.jpg" alt="" aria-hidden="true" loading="lazy"></span>
       <span class="logo-chip"><img src="assets/partners/mcet.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/alliance-dark.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/annapoorana.png" alt="" aria-hidden="true" loading="lazy"></span>
       <span class="logo-chip"><img src="assets/partners/vcas.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/skpec.webp" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/ayyappa.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <!-- duplicate half for a seamless infinite loop -->
+      <span class="logo-chip"><img src="assets/partners/kiot.jpg" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/mcet.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/alliance-dark.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/annapoorana.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/vcas.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/skpec.webp" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/ayyappa.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/kiot.jpg" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/mcet.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/alliance-dark.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/annapoorana.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/vcas.png" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip"><img src="assets/partners/skpec.webp" alt="" aria-hidden="true" loading="lazy"></span>
+      <span class="logo-chip wide"><img src="assets/partners/ayyappa.png" alt="" aria-hidden="true" loading="lazy"></span>
     </div>
   </div>
 </section>
@@ -777,7 +981,7 @@
   <span class="orb g" style="width:300px;height:300px;top:-60px;left:10%"></span>
   <div class="wrap reveal">
     <div class="sticky-cta">
-      <h2>Ready To Level Up?</h2>
+      <h2>Ready To Transform Your Campus?</h2>
       <div class="cta-actions">
         <a href="mailto:ceo@sarveshwaracademy.com?subject=Schedule%20a%20Meeting" class="btn btn-gold">Schedule a Meeting</a>
         <a href="https://www.sarveshwaracademy.com" class="btn btn-ghost">Know Us</a>
@@ -791,7 +995,7 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow center">The Lineup</span>
-      <h2>Programs That <em>Actually</em> Get You There</h2>
+      <h2>Programs Built For <em>Real</em> Outcomes</h2>
     </div>
     <div class="prog-grid reveal stagger">
       <div class="prog-card">
@@ -868,16 +1072,38 @@
   </div>
 </section>
 
-<!-- QUOTE DIVIDER -->
-<div class="quote-divider reveal" data-bg="light"><p>"Education is no longer preparation. It is competitive advantage."</p></div>
-
-<!-- CTA 2 -->
-<section class="cta-band blue" data-bg="dark">
-  <div class="wrap reveal">
-    <h2>Leveling Up Students. Transforming Institutions.</h2>
-    <div class="cta-actions">
-      <a href="https://www.sarveshwaracademy.com" class="btn btn-ghost">Explore Programs</a>
-      <a href="mailto:ceo@sarveshwaracademy.com?subject=Schedule%20a%20Meeting" class="btn btn-gold">Schedule a Meeting</a>
+<!-- HOW WE WORK -->
+<section class="pad process" id="process" data-bg="light">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">How We Work</span>
+      <h2>From First Call To <em>Measurable</em> Results</h2>
+      <p>A clear four-step engagement model, the same for a single school or a multi-campus university group.</p>
+    </div>
+    <ol class="process-grid reveal stagger">
+      <li class="step">
+        <span class="step-n">01</span>
+        <h4>Discover</h4>
+        <p>We meet your leadership, audit current outcomes and agree on the targets that matter: placements, accreditation, skills.</p>
+      </li>
+      <li class="step">
+        <span class="step-n">02</span>
+        <h4>Design</h4>
+        <p>A phased blueprint mapped to your calendar, cohorts and budget, with named mentors for every track.</p>
+      </li>
+      <li class="step">
+        <span class="step-n">03</span>
+        <h4>Deploy</h4>
+        <p>Practitioner-led training, labs, FDPs and hiring-round prep delivered on your campus or at your office.</p>
+      </li>
+      <li class="step">
+        <span class="step-n">04</span>
+        <h4>Measure</h4>
+        <p>Regular progress reports against the agreed targets, so you see the return on every program.</p>
+      </li>
+    </ol>
+    <div class="sec-cta reveal">
+      <a href="mailto:ceo@sarveshwaracademy.com?subject=Schedule%20a%20Discovery%20Call" class="btn btn-gold">Book a Discovery Call</a>
     </div>
   </div>
 </section>
@@ -888,12 +1114,12 @@
     <div class="sec-head center reveal">
       <span class="eyebrow center">In Their Words</span>
       <h2>Student Testimonials</h2>
-      <p>Real students, real talk — no scripts, no cap.</p>
+      <p>Unscripted feedback from students across our partner campuses.</p>
     </div>
     <div class="carousel reveal" id="testimonialCarousel">
       <div class="car-track" id="testimonialTrack"></div>
-      <div class="car-arrow prev" id="testimonialPrev">‹</div>
-      <div class="car-arrow next" id="testimonialNext">›</div>
+      <button type="button" class="car-arrow prev" id="testimonialPrev" aria-label="Previous slide">‹</button>
+      <button type="button" class="car-arrow next" id="testimonialNext" aria-label="Next slide">›</button>
     </div>
     <div class="car-dots" id="testimonialDots"></div>
   </div>
@@ -906,12 +1132,12 @@
     <div class="sec-head center reveal">
       <span class="eyebrow center">Proof Of Impact</span>
       <h2>Case Studies</h2>
-      <p>No fluff, just receipts. Tap any card for the full story — pics, stats, and all.</p>
+      <p>Measurable outcomes from our partner institutions. Tap any card for the full story, photos and numbers.</p>
     </div>
     <div class="carousel reveal" id="caseCarousel">
       <div class="car-track" id="caseTrack"></div>
-      <div class="car-arrow prev" id="casePrev">‹</div>
-      <div class="car-arrow next" id="caseNext">›</div>
+      <button type="button" class="car-arrow prev" id="casePrev" aria-label="Previous slide">‹</button>
+      <button type="button" class="car-arrow next" id="caseNext" aria-label="Next slide">›</button>
     </div>
     <div class="car-dots" id="caseDots"></div>
     <div class="sec-cta reveal">
@@ -921,19 +1147,6 @@
   </div>
 </section>
 
-<!-- CTA 3 -->
-<section class="cta-band navy" data-bg="dark">
-  <span class="orb m" style="width:300px;height:300px;bottom:-60px;right:8%"></span>
-  <div class="wrap reveal">
-    <h2>Your Glow-Up Starts Here</h2>
-    <div class="cta-actions">
-      <a href="https://www.sarveshwaracademy.com" class="btn btn-ghost">Know Us</a>
-      <a href="mailto:ceo@sarveshwaracademy.com?subject=Get%20Started" class="btn btn-gold">Get Started</a>
-    </div>
-  </div>
-</section>
-
-<div class="serrated" style="background:var(--navy)"></div>
 <!-- EVENTS -->
 <section class="pad events" id="events" data-bg="dark">
   <span class="orb g" style="width:340px;height:340px;top:-70px;right:8%;animation-delay:2s"></span>
@@ -974,18 +1187,38 @@
           </div>
         </div>
         <div class="evt-stats">
-          <div><b>127+</b><span>Industry Mentors</span></div>
-          <div><b>12+</b><span>Partner Campuses</span></div>
-          <div><b>10000+</b><span>Students Trained</span></div>
+          <div><b>18</b><span>Programs in 2026</span></div>
+          <div><b>7</b><span>Institutions</span></div>
+          <div><b>1,900+</b><span>Students Trained</span></div>
         </div>
       </div>
       <div class="reveal">
         <div class="carousel" id="carousel">
           <div class="car-track" id="carTrack"></div>
-          <div class="car-arrow prev" id="carPrev">‹</div>
-          <div class="car-arrow next" id="carNext">›</div>
+          <button type="button" class="car-arrow prev" id="carPrev" aria-label="Previous slide">‹</button>
+          <button type="button" class="car-arrow next" id="carNext" aria-label="Next slide">›</button>
         </div>
         <div class="car-dots" id="carDots"></div>
+      </div>
+    </div>
+
+    <div class="tl reveal" id="track-record">
+      <div class="tl-head">
+        <div>
+          <h3>2026 Track Record</h3>
+          <p>18 programs delivered from May to October 2026. The 36-day Placement Readiness Programme at Knowledge Institute of Technology is still running.</p>
+        </div>
+        <div class="tl-filters" id="tlFilters" role="tablist" aria-label="Filter programs by type"></div>
+      </div>
+      <div class="tl-slider">
+        <div class="tl-grid" id="tlGrid" tabindex="0" aria-label="2026 programs, scroll sideways"></div>
+      </div>
+      <div class="tl-controls">
+        <div class="tl-progress"><span id="tlBar"></span></div>
+        <div class="tl-arrows">
+          <button type="button" class="tl-arrow" id="tlPrev" aria-label="Previous programs">‹</button>
+          <button type="button" class="tl-arrow" id="tlNext" aria-label="Next programs">›</button>
+        </div>
       </div>
     </div>
     <div class="sec-cta reveal">
@@ -1040,26 +1273,12 @@
     <div class="sec-head center reveal">
       <span class="eyebrow center">The Leadership Council</span>
       <h2>Leadership and Advisory Council</h2>
-      <p>The absolute all-stars behind our enterprise AI delivery, decades of training expertise, and live corporate hiring networks.</p>
+      <p>The people behind our enterprise AI delivery, decades of training expertise, and live corporate hiring networks.</p>
     </div>
 
     <div class="lead-sub reveal stagger" id="leadership-team">
       <h3>Leadership</h3>
       <div class="lead-grid mentors">
-        <div class="lcard">
-          <div class="av">PR</div>
-          <img class="photo" src="assets/people/leaders-palani-ramu.jpg" alt="Dr. Palani Ramu" onerror="this.style.display='none'">
-          <div class="body">
-            <h4>Dr. Palani Ramu</h4>
-            <div class="role">Head of Training Division</div>
-            <span class="more-hint">Hover to read more</span>
-            <p>35 years of IT industry experience, specializing in dynamic learning models and quality control.</p>
-            <a class="lnkdn" href="https://www.linkedin.com/in/palani-ramu-427023179/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1.4 8h3.2v13H1.4V8zm6.4 0h3.07v1.78h.04c.43-.82 1.48-1.78 3.05-1.78 3.26 0 3.86 2.15 3.86 4.94V21h-3.2v-6.07c0-1.45-.03-3.31-2.02-3.31-2.02 0-2.33 1.58-2.33 3.2V21H7.8V8z"/></svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
         <div class="lcard">
           <div class="av">SR</div>
           <img class="photo" src="assets/people/leaders-srinivaasan.jpg" alt="Srinivaasan V" onerror="this.style.display='none'">
@@ -1165,7 +1384,7 @@
         <div class="foot-social">
           <a href="https://wa.me/917305590888" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l1.65-4.95A8 8 0 1 1 8.5 19.5z"/><path d="M8.5 9.5c0 3.5 3 6.5 6.5 6.5.7 0 1-.6.7-1.2l-.8-1.6c-.2-.4-.7-.5-1.1-.3l-.9.5a5 5 0 0 1-3.3-3.3l.5-.9c.2-.4.1-.9-.3-1.1l-1.6-.8c-.6-.3-1.2 0-1.2.7z" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.sarveshwaracademy.com" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4.5a2 2 0 0 1 4 0V17M11 12.5v.01"/></svg></a>
-          <a href="https://www.sarveshwaracademy.com" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.instagram.com/sarveshwaracademy/" target="_blank" rel="noopener" aria-label="Instagram: @sarveshwaracademy" title="Instagram: @sarveshwaracademy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.sarveshwaracademy.com" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg></a>
           <a href="https://www.sarveshwaracademy.com" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="M11 9.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.sarveshwaracademy.com" aria-label="X" title="X (Twitter)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
@@ -1247,6 +1466,7 @@
           <li><a href="tel:+917305590888">+91 73055 90888</a></li>
           <li><a href="tel:+917305591888">+91 73055 91888</a></li>
           <li><a href="mailto:ceo@sarveshwaracademy.com">ceo@sarveshwaracademy.com</a></li>
+          <li><a href="https://www.instagram.com/sarveshwaracademy/" target="_blank" rel="noopener">Instagram: @sarveshwaracademy</a></li>
           <li>Mon–Sat, 9:30 AM – 6:30 PM</li>
         </ul>
       </div>
@@ -1276,6 +1496,26 @@
       <div class="mstats" id="modalStats"></div>
       <div class="mgallery" id="modalGallery"></div>
       <div class="mcancel-row"><button type="button" class="btn btn-outline btn-sm" id="modalCancel">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2026 TRACK RECORD — INSTITUTION POP-UP -->
+<div class="modal-overlay" id="tlModal" role="dialog" aria-modal="true" aria-labelledby="tlMTitle" aria-hidden="true">
+  <div class="modal-box tl-mbox" data-lenis-prevent>
+    <button type="button" class="mclose" id="tlClose" aria-label="Close">×</button>
+    <div class="tl-mhead">
+      <div class="tl-mlogo" id="tlMLogo"></div>
+      <div>
+        <span class="eyebrow">2026 Track Record</span>
+        <h3 id="tlMTitle"></h3>
+        <p id="tlMSub"></p>
+      </div>
+    </div>
+    <ol class="tl-mlist" id="tlMList"></ol>
+    <div class="tl-mfoot">
+      <a href="#" class="btn btn-gold btn-sm js-contact">Bring this to your campus</a>
+      <button type="button" class="btn btn-outline btn-sm" id="tlDone">Close</button>
     </div>
   </div>
 </div>
@@ -1566,6 +1806,86 @@
     window.enhanceScrollMarquee(track,{duration: track.closest('.marquee.rev')?40:34, reverse: !!track.closest('.marquee.rev')});
   });
 
+  // 3D LOGO RING — turns the flat "Trusted Across Campuses" strip into logos orbiting on a
+  // tilted ring. Each chip is billboarded (always faces the viewer, never mirrored); depth
+  // drives scale, fade and colour. Drag to spin, hover a logo to pause, scrolling speeds it up.
+  (function logoRing(){
+    const section=document.querySelector('.trusted');
+    const marquee=section&&section.querySelector('.marquee');
+    if(!marquee||prefersReducedMotion)return;
+    const srcChips=[...marquee.querySelectorAll('.logo-chip')].filter(c=>{const i=c.querySelector('img');return i&&i.alt;});
+    if(srcChips.length<3)return;
+    const track=marquee.querySelector('.marquee-track');
+    if(hasGsap&&track)gsap.killTweensOf(track);
+
+    const stage=document.createElement('div');
+    stage.className='logo-ring-stage';
+    stage.setAttribute('role','img');
+    stage.setAttribute('aria-label','Institutions we have worked with: '+srcChips.map(c=>c.querySelector('img').alt).join(', '));
+    const ring=document.createElement('div');
+    ring.className='logo-ring';
+    const chips=srcChips.map(c=>{
+      const n=c.cloneNode(true);
+      const img=n.querySelector('img');img.loading='eager';img.alt='';
+      n.style.transform='none';
+      ring.appendChild(n);return n;
+    });
+    stage.appendChild(ring);
+    marquee.after(stage);
+    section.classList.add('has-ring');
+
+    const N=chips.length,stepDeg=360/N;
+    let angle=0,speed=.12,boost=0,R=440,tilt=-10,scale=1,paused=false,drag=null;
+    const sizes=()=>chips.map(c=>[c.offsetWidth,c.offsetHeight]);
+    let dims=sizes();
+    function layout(){
+      const w=stage.clientWidth;
+      // shrink gently on small screens so logos stay readable
+      scale=Math.max(.58,Math.min(1,w/900));
+      R=Math.min(460,(w*.40)/scale);
+      dims=sizes();
+    }
+    function frame(){
+      if(!paused&&!drag)angle+=speed+boost;
+      boost*=.94;
+      ring.style.transform=`scale(${scale.toFixed(3)}) rotateX(${tilt}deg)`;
+      let best=-2,bestEl=null;
+      chips.forEach((c,i)=>{
+        const a=angle+i*stepDeg, rad=a*Math.PI/180, f=Math.cos(rad); // 1 = front, -1 = back
+        const [w,h]=dims[i];
+        // place on the ring, then undo the ring's rotation so the logo faces the viewer
+        c.style.transform=`translate(${-w/2}px,${-h/2}px) rotateY(${a.toFixed(2)}deg) translateZ(${R}px) rotateY(${(-a).toFixed(2)}deg) rotateX(${-tilt}deg)`;
+        c.style.opacity=(.38+.62*((f+1)/2)).toFixed(3);
+        if(f>best){best=f;bestEl=c;}
+      });
+      chips.forEach(c=>c.classList.toggle('front',c===bestEl));
+      requestAnimationFrame(frame);
+    }
+
+    // hover a logo to pause; leave to resume
+    stage.addEventListener('pointerover',e=>{if(e.pointerType==='mouse'&&e.target.closest('.logo-chip'))paused=true;});
+    stage.addEventListener('pointerout',e=>{if(e.pointerType==='mouse'&&!stage.contains(e.relatedTarget))paused=false;});
+    stage.addEventListener('mouseleave',()=>{paused=false;});
+    // drag / swipe to spin
+    stage.addEventListener('pointerdown',e=>{drag={x:e.clientX,a:angle,v:0,t:performance.now()};stage.classList.add('dragging');stage.setPointerCapture(e.pointerId);});
+    stage.addEventListener('pointermove',e=>{
+      if(!drag)return;
+      const now=performance.now(),na=drag.a+(e.clientX-drag.x)*.35;
+      drag.v=(na-angle)/Math.max(1,now-drag.t)*16;drag.t=now;angle=na;
+    });
+    const endDrag=()=>{if(!drag)return;boost=Math.max(-6,Math.min(6,drag.v));drag=null;stage.classList.remove('dragging');};
+    stage.addEventListener('pointerup',endDrag);
+    stage.addEventListener('pointercancel',endDrag);
+    // scrolling the page gives the ring a little spin in the scroll direction
+    let lastY=scrollY;
+    addEventListener('scroll',()=>{const dy=scrollY-lastY;lastY=scrollY;boost=Math.max(-3,Math.min(3,boost+dy*.02));},{passive:true});
+    addEventListener('resize',layout);
+    // logos may still be loading — re-measure once they arrive
+    chips.forEach(c=>{const i=c.querySelector('img');if(!i.complete)i.addEventListener('load',layout,{once:true});});
+    layout();
+    requestAnimationFrame(frame);
+  })();
+
   // Magnetic hover on primary CTAs — nudges the button toward the cursor, matching the
   // tactile micro-interactions on high-polish marketing pages. Skipped on touch devices.
   // The -3px baseline in `y` keeps the CSS :hover lift feel (an inline transform from GSAP
@@ -1616,6 +1936,8 @@
 
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q=>{
+    q.tabIndex=0;q.setAttribute('role','button');
+    q.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();}});
     q.addEventListener('click',()=>{
       const item=q.closest('.faq-item');
       const isOpen=item.classList.contains('open');
